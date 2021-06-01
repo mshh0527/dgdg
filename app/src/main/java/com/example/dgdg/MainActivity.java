@@ -15,6 +15,7 @@ import static android.content.ContentValues.TAG;
 
 
 import com.example.dgdg.data.DBHelper;
+import com.example.dgdg.ui.home.TimerActivity;
 import com.example.dgdg.ui.mission.MissionActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -61,22 +62,27 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(0xFFFFFFFF);
         setSupportActionBar(toolbar);
 
-
-
         DBHelper helper;
         SQLiteDatabase db;
-        helper = new DBHelper(MainActivity.this, "newdb2.db", null, 1);
+        helper = new DBHelper(this, "newdb2.db", null, 1);
         db = helper.getWritableDatabase();
         helper.onCreate(db);
 
         db.execSQL("DELETE FROM newtable2");
 
 
+        String rec1=((TimerActivity)TimerActivity.context_main).machine_record;
+        System.out.println("intent:::"+rec1);
 
-        String sql = "INSERT INTO newtable2(UserName,record) values('김미소',20);";
-        db.execSQL(sql);
+        if (!rec1.equals("NULL")) {
 
-        String sql2 = "INSERT INTO newtable2(UserName,Record) values('이가경',30);";
+            String sql = "INSERT INTO newtable2(UserName,Record) values('김미소', rec1);";
+            db.execSQL(sql);
+        }
+
+
+
+        String sql2 = "INSERT INTO newtable2(UserName,Record) values('김미소','30');";
         db.execSQL(sql2);
 
 
@@ -87,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
             username.add(c.getString(c.getColumnIndex("UserName")));
             userrecord.add(c.getString(c.getColumnIndex("Record")));
         }
+
+
+
 
         context_main = this;
     }

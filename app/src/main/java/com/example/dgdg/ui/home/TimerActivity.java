@@ -3,6 +3,7 @@ package com.example.dgdg.ui.home;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -17,15 +18,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
+import com.example.dgdg.MainActivity;
 import com.example.dgdg.R;
+import com.example.dgdg.ui.ranking.RankingFragment;
 
 
 public class TimerActivity extends AppCompatActivity {
 
 
     public static Context context_main; //context 변수선언
-    public static String machine_record;
+    public static String machine_record="NULL";
 
 
     //멤버변수화
@@ -77,6 +81,7 @@ public class TimerActivity extends AppCompatActivity {
     private long baseTime,baseTime2,pauseTime,pauseTime2;
     CountDownTimer countdown=null;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,6 +118,8 @@ public class TimerActivity extends AppCompatActivity {
         //bt_rec2_t.setOnClickListener(onClickListener);
 
         timer3.setText(getTime3());
+
+
 
     }
 
@@ -178,7 +185,13 @@ public class TimerActivity extends AppCompatActivity {
 
                 //상태변환
                 status = PAUSE;
+
+
                 break;
+
+
+
+
             case PAUSE:
 
 
@@ -194,6 +207,7 @@ public class TimerActivity extends AppCompatActivity {
                 //bt_rec.setText("기록");
 
                 status = RUN;
+
 
         }
 
@@ -218,6 +232,8 @@ public class TimerActivity extends AppCompatActivity {
 
             }
         }.start();
+
+
 
 
     }
@@ -293,7 +309,10 @@ public class TimerActivity extends AppCompatActivity {
         String recTime = String.format("%02d:%02d:%03d",m,s,ms);
         machine_record=recTime;
 
+
+
         total2=overTime;
+
 
         return recTime;
     }
@@ -327,6 +346,8 @@ public class TimerActivity extends AppCompatActivity {
 
 
             handler.sendEmptyMessage(0);
+
+
         }
     };
 

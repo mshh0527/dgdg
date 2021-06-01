@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.dgdg.MainActivity;
 import com.example.dgdg.R;
 import com.example.dgdg.data.DBHelper;
+import com.example.dgdg.ui.home.TimerActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,10 +40,14 @@ public class RankingFragment extends Fragment {
             View view =  inflater.inflate(R.layout.fragment_ranking, container, false);
 
 
+
+
+
             username = ((MainActivity)MainActivity.context_main).username;
             userrecord=((MainActivity)MainActivity.context_main).userrecord;
 
             //순위 변동
+            /*
             for(int i=0;i<username.size();i++){
                 for(int j=i+1;j<username.size();j++){
                     if(Integer.parseInt(userrecord.get(i))<Integer.parseInt(userrecord.get(j))){
@@ -56,7 +61,7 @@ public class RankingFragment extends Fragment {
                     }
                 }
             }
-
+*/
             for(int i=0;i<username.size();i++) {
                 total.add("user name:"+username.get(i)+"    "+"user record:"+userrecord.get(i));
             }
@@ -68,4 +73,5 @@ public class RankingFragment extends Fragment {
 
             return view ;
         }
-    }
+
+}
